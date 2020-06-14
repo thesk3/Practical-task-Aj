@@ -1,0 +1,100 @@
+
+<style>
+</style>
+<div >
+	<div class="container" style="    width: auto;">
+
+		<div class="panel">
+			<div
+			 class="row search-row" id="searchdata">
+
+				<div class="col-sm-12" style="text-align: end;">
+
+<md-button
+class="md-raised md-primary button-color primary-button-col"
+ng-click="logout()">Logout</md-button>
+				</div>
+
+			</div>
+		
+			<div class="row content">
+				<div class="col-sm-9">	
+
+			<div class="col-sm-3 card cardB" style=" height: 19em;" ng-hide="showAll" ng-repeat="game in products | filter:query"
+		  >		
+
+				<div class="card cardData">
+					<div class="card-title"><h4>{{game.Name}} </h4></div>
+					<div class="card-title"></div>
+					<div class="card-body">
+						<div><label>{{game.Location}}</label></div>
+						<div><label> ₹ &nbsp; {{game.price}}</label>
+							<div><label> Qty : {{game.qty}}</label>
+							</div>
+
+
+							<div ng-show="game.qty==0" class="col-sm-12" style="    top: 45px;">
+								<div class="sol-out">sold  Out </div> 	
+							</div>
+								
+
+<div ng-show="game.qty!=0" class="col-sm-12" style="    top: 45px;">
+	
+	<md-button
+class="md-raised md-primary button-color primary-button-col"
+ng-click="addToCart()">Add To Cart</md-button>
+</div>
+</div> 
+
+
+					</div>
+				  </div>
+			
+	
+			</div>		
+		</div>
+
+			<div class="col-sm-3 car-b" ng-init="val=0;">
+
+				<div style="text-align: center;"><h3>Cart Item</h3></div>
+
+				<div class="col-sm-12 card cardB" style=" height: 19em;" ng-hide="showAll" ng-repeat="game in products | filter:query"
+				>		
+	  
+					  <div class="card cardData">
+						  <div class="card-title"><h4>{{game.Name}} </h4></div>
+						  <div class="card-title"></div>
+						  <div class="card-body">
+							  <div><label>{{game.Location}}</label></div>
+							  <div><label> ₹ &nbsp; {{game.price}}</label>
+								  <div><label> Qty : {{game.qty}}</label>
+								  </div>
+								  <div class="cart-c">
+								  <div class="sol-out cart-count"> <label ng-click="val=val>0?val-1:0">-</label> {{val}} <label ng-click="val=val+1"> +</label> </div> 	
+									</div>
+	  <!-- <img ng-src="{{game.url}}" alt="Smiley face" height="42" width="42"> -->
+	  <div class="col-sm-12" ><md-button
+	  class="md-raised md-primary button-color primary-button-col"
+	  ng-click="addToCart()">Buy</md-button>
+	  </div>
+	  </div> 
+	  
+	  
+						  </div>
+						</div>
+				  
+		  
+				  </div>		
+	  
+
+
+
+			</div>	
+
+
+			</div>
+			
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,477 @@
+<style>
+	.pic {
+		background: url(images/login_img.jpg);
+		background-size: cover;
+		border: 2px solid #eee;
+		height: 658px;
+		width: auto;
+	}
+	</style>
+	<div class="login-body pic" ng-init="hidesignin=true;hidelogin=false;">
+		<div class="container" ng-init="show=true;hide=false;">
+			<div class="row">
+				<div class="crad-c form-signin" ng-show="show">
+				<div class="crad-c">
+					<div class="f-hed"><h2>Login</h2></div>
+					<div class="fopad">
+					<div class="form-group">
+						<label for="email">Email address:</label>
+						<input type="email" ng-model="user.email" class="form-control" id="email">
+					  </div>
+					  <div class="form-group">
+						<label for="pwd">Password:</label>
+						<input type="password" ng-model="user.password" class="form-control" id="pwd">
+					  </div>
+					  <div class="l-but" >
+					  <label class="llpad" ng-click="show=false;hide=true"><a>Sign up</a></label>
+
+					  <md-button
+					  class="md-raised md-primary button-color primary-button-col"
+					  ng-click="login();">Login</md-button>
+					</div>	
+					</div>
+				</div>
+			</div>
+
+
+
+				  <div class="col-md-12" ng-show="hide">
+					
+	<form name="newClient" style="min-height: 40em;" novalidate
+		autocomplete="off" ng-init="init();showerrormsg=null">
+		<div class="panel panel-deva form-signin sign">
+			<div class="panel-heading"
+				style="font-size: 15px; text-align: center; color: var(- -main-primary-button-color);">
+				<label>Sigun up</label>
+			</div>
+			<div class="panel-body">
+
+<div class="row" style="display: flex;justify-content: center;">
+
+	<div class=" imgUp" style="margin-bottom: 11px; display: flex;flex-direction: column;">
+		<!-- data-target="#uplodepic" -->
+		<img class="imagePreview circlrImg" id="empImg"
+			ng-src="{{imageSrc}}"></img>
+
+			 <label data-toggle="modal" style="    margin-left: 4em;
+			 margin-top: 8px;" ng-click="uploadphoto()"
+				class="uplod-lab "> <span>Uploade</span>
+			</label>
+		
+
+	</div>
+
+</div>
+	
+
+				<div class="col-sm-6">
+
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput">Email ID </label>
+
+						<div class="form-group">
+							<input type="email" class="form-control input-sm" id="Email"
+								ng-maxlength="250" maxlength="251" placeholder="Enter Email ID"
+								ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" name="emailid"
+								ng-model="PatientInfo.emailID" required> <span
+								ng-show="newClient.emailid.$dirty && newClient.emailid.$invalid">
+								<span ng-show="newClient.emailid.$error.pattern" class="error">Enter
+									valid email ID.<br>
+							</span> <span ng-show="newClient.emailid.$error.minlength" class="error">Email
+									Should Be 250 character</span>
+							</span>
+						</div>
+
+					</div>
+
+
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput ">First Name<span
+							class="req">*</span></label>
+
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" id="clientName"
+								placeholder="First Name ,Middle Name, Last Name"
+								name="clientName1" ng-model="PatientInfo.name" maxlength="41"
+								ng-maxlength="40" autofocus="autofocus" required> <span
+								ng-show="newClient.clientName1.$dirty && newClient.clientName1.$invalid">
+								<span ng-show="newClient.clientName1.$error.required"
+								class="error">Please Enter Name</span>
+
+
+							</span>
+						</div>
+
+					</div>
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput">Primary Mobile<span
+							class="req">*</span></label>
+
+						<div class="form-group" >
+							<input type="number" class="form-control input-sm"
+								id="primaryMobileNo" ng-maxlength="10" ng-minlength="10"
+								placeholder="Enter Mobile Number" name="primaryMobileNo"
+								ng-model="PatientInfo.primaryMobile" required>
+						</div>
+						<span ng-show="showerrormsg!=null || showerrormsg.length>2"
+							class="error">{{showerrormsg}}</span> <span
+							ng-show="newClient.primaryMobileNo.$dirty && newClient.primaryMobileNo.$invalid">
+							<span ng-show="newClient.primaryMobileNo.$error.required"
+							class="error">Please Enter Mobile Number</span> <span
+							ng-show="newClient.primaryMobileNo.$error.minlength"
+							class="error">Mobile Number Should Be 10 Digit</span> <span
+							ng-show="newClient.primaryMobileNo.$error.maxlength"
+							class="error">Mobile Number Should Be 10 Digit</span>
+						</span>
+					</div>
+
+
+					
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput">DOB</label>
+				
+						<div class="form-group">
+							<input type="date" class="form-control input-sm getDate"
+								id="appointmentDate" placeholder="Select Date"
+								ng-change="calculateAge(PatientInfo.birthDate)"
+								name="appointmentDate" ng-model="PatientInfo.birthDate">
+
+							<span
+								ng-show="newClient.appointmentDate.$dirty && newClient.appointmentDate.$invalid">
+
+
+							</span>
+						</div>
+
+					</div>
+
+
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput">Town</label>
+
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" id="clientName"
+								placeholder="City" name="clientName" ng-model="PatientInfo.city"
+								maxlength="151" ng-maxlength="150">
+
+						</div>
+
+					</div>
+
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="inputsm" class="labelInput">PIN</label>
+
+							<input type="text" class="form-control input-sm" id="clientName"
+								placeholder="PIN" name="clientName"
+								ng-model="PatientInfo.pinNumber" maxlength="151"
+								ng-maxlength="150">
+
+
+						</div>
+
+					</div>
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput ">Document 1</label>
+
+						<div class="form-group">
+							<input ng-model="photoPath" ng-disabled="editEmpStatus" id='empPic1'
+							type='file' name='photoPath'
+							onchange="angular.element(this).scope().readImage(this, 'empImg',1)"
+							value=" " accept="image/*,application/pdf">
+
+
+						</div>
+
+					</div>
+
+				</div>
+				<div class="col-sm-6">
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput ">Password<span
+							class="req">*</span></label>
+
+						<div class="form-group">
+							<input type="password" class="form-control input-sm" id="clientName"
+								name="clientName1" ng-model="PatientInfo.password" maxlength="41"
+								ng-maxlength="40" autofocus="autofocus" required> <span
+								ng-show="newClient.clientName1.$dirty && newClient.clientName1.$invalid">
+								<span ng-show="newClient.clientName1.$error.required"
+								class="error">Please Enter Name</span>
+
+
+							</span>
+						</div>
+
+					</div>
+
+
+
+
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput ">Last Name<span
+							class="req">*</span></label>
+
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" id="clientName"
+								placeholder="First Name ,Middle Name, Last Name"
+								name="clientName1" ng-model="PatientInfo.name" maxlength="41"
+								ng-maxlength="40" autofocus="autofocus" required> <span
+								ng-show="newClient.clientName1.$dirty && newClient.clientName1.$invalid">
+								<span ng-show="newClient.clientName1.$error.required"
+								class="error">Please Enter Name</span>
+
+
+							</span>
+						</div>
+
+					</div>
+
+
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput ">Gender</label>
+
+						<div class="form-group">
+							<select class="form-control" id="sel1" name="gender1"
+								ng-model="PatientInfo.gender" >
+								<option value="">Please Select</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Other">Other</option>
+							</select> 
+						</div>
+
+					</div>
+
+
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput ">Address Line 1</label>
+
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" id="clientName"
+								placeholder="Address Line 1" name="addressOne"
+								ng-model="PatientInfo.addressOne" maxlength="151"
+								ng-maxlength="150">
+
+						</div>
+
+					</div>
+
+
+
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput ">Address Line 2</label>
+
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" id="clientName"
+								placeholder="Address Line 2" name="addressTwo"
+								ng-model="PatientInfo.addressTwo" maxlength="151"
+								ng-maxlength="150" autofocus="autofocus">
+
+
+						</div>
+
+					</div>
+
+					<div class="col-sm-6" style="    margin-top: -6.5em;">
+						<label for="inputsm" class="labelInput ">Address Line 3</label>
+
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" id="clientName"
+								placeholder="Address Line 2" name="addressTwo"
+								ng-model="PatientInfo.addressTwo" maxlength="151"
+								ng-maxlength="150" autofocus="autofocus">
+
+
+						</div>
+
+					</div>
+					<div class="col-sm-6">
+						<label for="inputsm" class="labelInput ">Document 2</label>
+
+						<div class="form-group">
+							<input ng-model="photoPath" ng-disabled="editEmpStatus" id='empPic2'
+							type='file' name='photoPath'
+							onchange="angular.element(this).scope().readImage(this, 'empImg',2)"
+							value=" " accept="image/*,application/pdf">
+
+
+						</div>
+
+					</div>
+
+
+	
+
+
+
+
+
+				
+				</div>
+
+				<div class="col-md-12">
+					<div class="l-but" >
+						<label class="llpad"ng-click="show=true;hide=false"><a>Login</a></label>
+  
+						<md-button
+						class="md-raised md-primary button-color primary-button-col"
+						ng-click="addUser()">Add</md-button>
+					  </div>	
+  
+
+					<!-- <div align="center" style="margin-bottom: 10px; margin-top: 1.5em;">
+						<md-button class="md-raised md-primary button-color cancelBtn"
+						ng-click="show=true;hide=false">Login</md-button>
+						<md-button
+							class="md-raised md-primary button-color primary-button-col"
+							ng-click="addUser()">Add</md-button>
+					
+					</div> -->
+				</div>
+	</form>
+				  </div>
+	
+		</div>
+	</div>
+	<!-- Forget Password Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header header-color">
+					<button type="button" class="close" data-dismiss="modal"
+						style="color: white;" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" style="text-align: center;">Forgot
+						Password ?</h4>
+				</div>
+				<form name="resetPassword" method="POST" novalidate>
+					<div class="modal-body">
+						<p style="color: black;">Enter your e-mail address below to
+							reset your password.</p>
+						<input type="email" name="emailID" placeholder="Email"
+							ng-minlength="3" ng-maxlength="75" ng-model="emailID"
+							autocomplete="off" class="form-control placeholder-no-fix"
+							required> <span
+							ng-show="resetPassword.emailID.$dirty && resetPassword.emailID.$invalid">
+							<span ng-show="resetPassword.emailID.$error.requried"
+							class="error">Please Enter Email ID<br></span> <span
+							ng-show="resetPassword.emailID.$error.minlength" class="error">Email
+								ID should be minimum 3 character.<br>
+						</span> <span ng-show="resetPassword.emailID.$error.maxlength"
+							class="error">Email ID should be maximum 75 character. <br></span>
+	
+						</span>
+					</div>
+					<div class="modal-footer">
+						<button data-dismiss="modal" class="btn btn-default" type="button" ng-click="emailID=null;">Cancel</button>
+						<button class="btn btn-deva" ng-disabled="resetPassword.$invalid"
+							ng-click="sendCredentials();">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- modal -->
+	
+	<!-- Modal for Leave success forget password  -->
+	<div id="ForgotPasswordSuccess" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+	
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header header-color">
+	
+					<h4 class="modal-title" style="text-align: center;">Success</h4>
+				</div>
+				<div class="modal-body" style="text-align: center;">
+					<p>{{msg}}</p>
+				</div>
+				<div class="modal-footer">
+	
+					<button type="button" class="btn btn-deva" data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
+	<!-- Modal for Leave error Forgot Password  -->
+	<div id="ForgotPasswordError" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+	
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header header-color">
+	
+					<h4 class="modal-title" style="text-align: center;">Error</h4>
+				</div>
+				<div class="modal-body" style="text-align: center;">
+					<p>Email ID not Found</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
+	</div>
+	</div>
+
+
+
+
+	<div id="uplodepic" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm" style="width: 30em;">
+	
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header header-color">
+	
+					<h4 class="modal-title" style="text-align: center;">Upload</h4>
+				</div>
+				<div class="modal-body"
+					style="display: flex; justify-content: center;">
+	
+					<div class="form-group" align="center">
+						<!--    <label > Employee Photo 1</label> -->
+						<br> <input ng-model="photoPath" ng-disabled="editEmpStatus"
+							id='empPic' type='file' name='photoPath'
+							onchange="angular.element(this).scope().readImage(this, 'empImg')"
+							value=" " accept="image/*">
+	
+						<div id="my_camera"></div>
+						<br> <br>
+	
+					</div>
+	
+	
+				</div>
+				<div class="modal-footer">
+					<div class="col-md-12">
+						<div align="center" style="margin-bottom: 10px;">
+							<md-button class="md-raised md-primary button-color cancelBtn"
+								data-dismiss="modal" aria-hidden="true">Cancel</md-button>
+							<md-button
+								class="md-raised md-primary button-color primary-button-col"
+								ng-click="take_snapshot()">Capture </md-button>
+	
+	
+						</div>
+					</div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
